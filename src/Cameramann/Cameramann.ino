@@ -1,21 +1,21 @@
-#define ledPin 13
+#include <Servo.h>
 
+#define servoPin 6
+
+Servo myServo;
 String inputString = "";
 bool stringComplete = false;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, false);
+  myServo.attach(servoPin);
 }
 
 void loop() {
   if(stringComplete) {
-    Serial.println(inputString);
     int num = inputString.toInt();
     inputString = "";
-    if(num > 266) digitalWrite(ledPin, true);
-    else digitalWrite(ledPin, false);
+    myServo.write(map(num, 0, 550, 180, 0));
     stringComplete = false;
   }
 
