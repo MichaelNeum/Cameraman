@@ -28,15 +28,13 @@ while True:
         maxSize= None
     )
 
-    num=0
-
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
-        print(x)
-        num = x
+        print(str(x))
+        output = str(x) + "f"
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-
-    arduinoPort.write(num)
+    
+    arduinoPort.write(output.encode())
 
     # Display the resulting frame
     cv2.imshow('Video', frame)
