@@ -21,8 +21,11 @@ while True:
         maxSize= None
     )
 
+    num=0
+
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
+        print(x)
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
     # Display the resulting frame
