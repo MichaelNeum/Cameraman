@@ -2,6 +2,12 @@ import cv2
 import sys
 import serial
 
+arduinoPort = serial.Serial()
+arduinoPort.baudrate = 9600
+arduinoPort.port = "COM3"
+
+arduinoPort.open()
+
 cascPath = "C:\Michael\GitHub\Cameraman\src\haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
 
@@ -27,7 +33,10 @@ while True:
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
         print(x)
+        num = x
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+    arduinoPort.write(num)
 
     # Display the resulting frame
     cv2.imshow('Video', frame)
@@ -38,3 +47,4 @@ while True:
 # When everything is done, release the capture
 video_capture.release()
 cv2.destroyAllWindows()
+arduinoPort.close()
