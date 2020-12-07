@@ -1,5 +1,6 @@
 import cv2
 import sys
+import serial
 
 cascPath = "C:\Michael\GitHub\Cameraman\src\haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
